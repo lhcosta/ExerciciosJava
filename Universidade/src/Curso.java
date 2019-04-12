@@ -25,8 +25,13 @@ public class Curso {
 		return turmas;
 	}
 
-	public void setTurmas(Turma turma) {
+	public boolean setTurmas(Turma turma) {
+		if(this.turmas.size() == 3) {
+			return false;
+		}
+		
 		this.turmas.add(turma);
+		return true;
 	}
 	
 	

@@ -21,15 +21,27 @@ public class Turma {
 	}
 
 
-	public void setAlunos(Aluno[] alunos) {
+	public boolean setAlunos(Aluno[] alunos) {
+		
+		if(this.alunos.size() < 5 || alunos.length < 5) {
+			return false;
+		}
+		
 		for(Aluno aux : alunos) {
 			this.alunos.add(aux);
 		}
+		
+		return true;
 	}
 	
 	//Sobrecarga
-	public void setAlunos(Aluno aluno) {
+	public boolean setAlunos(Aluno aluno) {
+		if(this.alunos.size() == 5) {
+			return false;
+		}
+		
 		this.alunos.add(aluno);
+		return true;
 	}
 
 

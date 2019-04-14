@@ -2,38 +2,21 @@ import java.util.ArrayList;
 
 public class Turma {
 	private ArrayList<Aluno> alunos = new ArrayList<>();
-	private Professor teacher;
+	private Professor professor = null;
 	private String codigoTurma;
 	private static int geraCodigoTurma = 0;
 	
 	
-	Turma(Curso curso){
+	//Construtor
+	Turma(){
 		geradorCodigoTurma();
-		
-		//Setando turma no curso
-		curso.setTurmas(this);
 	}
-
 	
 	//Métodos Acessores
 	public ArrayList<Aluno> getAlunos() {
 		return alunos;
 	}
 
-
-	public boolean setAlunos(Aluno[] alunos) {
-		
-		if(this.alunos.size() < 5 || alunos.length < 5) {
-			return false;
-		}
-		
-		for(Aluno aux : alunos) {
-			this.alunos.add(aux);
-		}
-		
-		return true;
-	}
-	
 	//Sobrecarga
 	public boolean setAlunos(Aluno aluno) {
 		if(this.alunos.size() == 5) {
@@ -46,12 +29,12 @@ public class Turma {
 
 
 	public Professor getProfessor() {
-		return teacher;
+		return professor;
 	}
 
 
 	public void setProfessor(Professor teacher) {
-		this.teacher = teacher;
+		this.professor = teacher;
 	}
 
 
@@ -65,7 +48,28 @@ public class Turma {
 		this.codigoTurma = "TM00" + geraCodigoTurma;
 	}
 	
-	
+	//Informacoes da turma
+	public String infoTurma() {
+		
+		String info = "";
+		
+		if(this.professor == null) {
+			info += "NENHUM PROFESSOR CADASTRADO NA TURMA\n\n";
+		}else {
+			info += "PROFESSOR -> " + professor.getNome() + "\n\n";
+		}
+		
+		if(this.alunos.size() == 0) {
+			info += "NENHUM ALUNO CADASTRADO\n\n";
+			return info;
+		}
+		
+		for(Aluno aluno: this.alunos) {
+			info += "MAT: " + aluno.getMatricula() + " --- NOME: " + aluno.getNome() + "\n";
+		}
+		
+		return info;
+	}
 	
 	
 	

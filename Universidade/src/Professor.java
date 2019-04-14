@@ -4,13 +4,11 @@ public class Professor {
 	//Atributos
 	private String nome;
 	private String cpf;
-	//private Calendar dataNascimento = Calendar.getInstance();
-	
-	
+	private Turma turma;
+
 	//Construtor
-	Professor(String nome, String cpf){
+	Professor(String nome){
 		setNome(nome);
-		setCpf(cpf);
 	}
 
 	//Métodos Acessores
@@ -18,28 +16,26 @@ public class Professor {
 		return nome;
 	}
 
-
 	public String getCpf() {
 		return cpf;
 	}
 
-
-/*	public Calendar getDataNascimento() {
-		return dataNascimento;
-	}
-*/
 	private void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	private void setCpf(String cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-/*
-	public void setDataNascimento(Calendar dataNascimento) {
-		this.dataNascimento = dataNascimento;
+
+	public Turma getTurma() {
+		return turma;
 	}
-*/
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+
 	
 	
 	

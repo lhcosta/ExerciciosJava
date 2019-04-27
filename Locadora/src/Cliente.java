@@ -35,8 +35,14 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	private void setIdade(int idade) {
-		this.idade = idade;
+	private void setIdade(int idade)  {
+		
+		try {
+			Validation.validarInt(0, 100, idade);
+		}catch (IllegalArgumentException e) {
+			View.mensagemErro("IDADE INVALIDA", "CLIENTE");
+		} 
+		
 	}
 
 }

@@ -34,22 +34,7 @@ public class Funcionario {
 	}
 
 	private void setIdade(int idade) {
-		
-		try {
-			Validation.validarInt(1, 100, idade);
-		} catch (IllegalArgumentException e) {
-			// TODO: handle exception
-			View.mensagemErro("IDADE INVALIDA", "FUNCIONARIO");
-		}
-		
+		this.idade = idade;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

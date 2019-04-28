@@ -4,14 +4,12 @@ public class Cliente {
 	//Atributos
 	private String nome;
 	private int idade;
-	private int codigo;
-	private static int geradorCodigo = 0;
+	private String cpf;
 
 	//Construtor
-	Cliente(String nome, int idade){
+	Cliente(String nome, String cpf){
 		setNome(nome);
-		setIdade(idade);
-		gerarCodigo();
+		setCpf(cpf);
 	}
 	
 	//Metodos Acessores
@@ -23,26 +21,20 @@ public class Cliente {
 		return idade;
 	}
 	
-	public int getCodigo() {
-		return codigo;
-	}
-
-	private void gerarCodigo() {
-		this.codigo = ++geradorCodigo;
-	}
-
 	private void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	private void setIdade(int idade)  {
-		
-		try {
-			Validation.validarInt(0, 100, idade);
-		}catch (IllegalArgumentException e) {
-			View.mensagemErro("IDADE INVALIDA", "CLIENTE");
-		} 
-		
+	public void setIdade(int idade)  {
+		this.idade = idade;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	private void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 }

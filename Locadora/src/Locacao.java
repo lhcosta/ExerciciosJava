@@ -7,16 +7,10 @@ public class Locacao {
 	private ArrayList<Filme> filmes = new ArrayList<>();
 	private Funcionario funcionario;
 	
-	
 	//Construtor
-	Locacao (Cliente cliente, Filme filme){
+	Locacao (Cliente cliente, Funcionario f){
 		setCliente(cliente);
-		setFilme(filme);
-	}
-	
-	Locacao (Cliente cliente, Filme filme1, Filme filme2){
-		super();
-		setFilme(filme2);
+		setFuncionario(f);
 	}
 	
 	//Metodos Acessores
@@ -28,21 +22,26 @@ public class Locacao {
 		filmes.add(filme);
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-
-	public Cliente getCliente() {
-		return cliente;
+	
+	//Retornado informacoes sobre locacao
+	public String getInfo() {
+		
+		String info = ""; 
+		
+		info += "FUNCIONARIO - " + funcionario.getNome().toUpperCase() + "\n"
+			  + "CLIENTE - " + cliente.getNome().toUpperCase() + "\n";
+		
+		for(Filme f : filmes) {
+			info += "FILME - " + f.getNome().toUpperCase() + "\n"; 
+		}
+		
+		return info;
 	}
-
-	public ArrayList<Filme> getFilmes() {
-		return filmes;
-	}
+	
+	
 	
 	
 	

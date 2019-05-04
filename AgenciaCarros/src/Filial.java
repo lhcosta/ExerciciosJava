@@ -12,15 +12,9 @@ public class Filial {
 	
 	Filial(String nome){
 		setNome(nome);
-		calcularValorVendas();
 	}
 	
-	private void calcularValorVendas() {
-		for(Venda v : vendas) {
-			rendaTotal += v.getValor();
-		}
-	}
-
+	//Metodos acessores
 	public String getNome() {
 		return nome;
 	}
@@ -30,30 +24,69 @@ public class Filial {
 	}
 
 	public double getRendaTotal() {
+		calcularValorVendas();
 		return rendaTotal;
 	}
 	
-	private ArrayList<Carro> getCarros() {
+	public ArrayList<Carro> getCarros() {
 		return carros;
 	}
-
-	private ArrayList<Relatorio> getRelatorios() {
-		return relatorios;
+	
+	public void setCarro(Carro carro) {
+		carros.add(carro);
 	}
 	
+	public void setVendas(Venda venda) {
+		this.vendas.add(venda);
+	}
+
+	public void setRelatorios(Relatorio relatorio) {
+		this.relatorios.add(relatorio);
+	}
+
+	//Calcula renda total da filial
+	private void calcularValorVendas() {
+		for(Venda v : vendas) {
+			rendaTotal += v.getValor();
+		}
+	}
 	
 	//Apresentar carros
-	public String getNomesCarros() {
+	public String getNomesCarros() throws IllegalArgumentException {
 		
-		for(Carro c : this.carros) {
-			
+		if(carros.isEmpty()) {
+			throw new IllegalArgumentException ("Nenhum carro cadastrado!");
 		}
 		
-		return "";
+		String info = "";
+		int i = 1;
+		
+		for(Carro c : this.carros) {
+			if(!c.isVendido()) {
+				info += i +  " - " + c.toString() + "\n"
+						+ "R$ " + c.getPreco();
+				i++;
+			}
+		}
+		
+		return info.toUpperCase();
 		
 	}
 	
-	
-
+	//Apresentar relatorios
+	public String getTodosRelatorios() throws IllegalArgumentException {
+		
+		if(relatorios.isEmpty()) {
+			throw new IllegalArgumentException("Nenhum relatorio gerado");
+		}
+		
+		String info = "";
+		
+		for(Relatorio r : relatorios) {
+			info += r.toString() + "\n";
+		}
+		
+		return info;
+	}
 	
 }

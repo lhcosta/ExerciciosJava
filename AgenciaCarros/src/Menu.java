@@ -24,7 +24,8 @@ public class Menu {
 			try {
 				
 				option = View.solicitarDadosInteiro("1 - Cadastrar Filial\n"
-						+ "2 - Apresentar Filial\n" , nomeAgencia, 1 , 2);
+						+ "2 - Apresentar Filial\n"
+						+ "3 - Encerrar\n" , nomeAgencia, 1 , 3);
 				
 				switch (option) {
 				case 1:
@@ -36,10 +37,12 @@ public class Menu {
 					//filial - 1, pois estou acessando por indice 
 					subMenuFilial(Util.getFiliais().get(filial-1));
 					break;
+				case 3:
+					return;
 				}	
 				
 			}catch(NullPointerException e) {
-				flag = true;
+				flag = false;
 			} catch (IllegalArgumentException e) {
 				View.mensagemErro("Nenhuma filial cadastrada", nomeAgencia);
 			}

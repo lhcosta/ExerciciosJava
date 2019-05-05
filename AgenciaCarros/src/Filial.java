@@ -64,7 +64,7 @@ public class Filial {
 		for(Carro c : this.carros) {
 			if(!c.isVendido()) {
 				info += i +  " - " + c.toString() + "\n"
-						+ "R$ " + c.getPreco();
+						+ "R$ " + c.getPreco() + "\n\n";
 				i++;
 			}
 		}

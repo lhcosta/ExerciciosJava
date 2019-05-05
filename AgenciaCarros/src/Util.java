@@ -7,8 +7,8 @@ public class Util {
 	//Cadastrar carro
 	public static Carro cadatrarCarro() {
 		
-		String modelo = View.solicitarDados("Digite o modelo: ", "Carro");
 		String marca = View.solicitarDados("Digite a marca: ", "Carro");
+		String modelo = View.solicitarDados("Digite o modelo: ", "Carro");
 		int ano = View.solicitarDadosInteiro("Digite o ano", "Carro", 1960, 2019);
 		
 		Carro carro = new Carro(marca, modelo, ano);

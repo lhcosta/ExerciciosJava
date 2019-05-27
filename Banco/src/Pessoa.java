@@ -1,5 +1,5 @@
 
-public class Pessoa {
+public abstract class Pessoa {
 	
 	private String login;
 	private int senha = 1234;

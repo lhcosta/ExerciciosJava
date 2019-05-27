@@ -22,5 +22,25 @@ public class Util {
 		animais.add(i);
 	}
 	
+	
+	public static void escolherAnimal() {
+		
+		int i = 1;
+		int index_animal;
+		String info = "";
+		
+		for (Animal a : animais) {
+			info += i + " - " + a.getNome() + "\n";
+			i++;
+		}
+		
+		index_animal = View.solicitarDadosInteiro(info, "Escolha o animal", 1, animais.size());
+		Animal animal = animais.get(index_animal-1);
+		
+		
+		View.mensagemTexto(animal.descricao() + "\n"
+				+ animal.emitirSom() + "\n", "Animal");
+		
+	}
 
 }

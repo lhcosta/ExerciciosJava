@@ -31,7 +31,7 @@ public class Relatorio {
 		
 		String info = "Cliente - " + cliente.getNome() + "\n"
 				+ "Carro - " + carro.toString() + "\n"
-				+ "Valor Venda - R$ " + venda.getValor();
+				+ "Valor Venda - R$ " + venda.getValor() + "\n";
 		
 		return info;
 	}

@@ -13,7 +13,7 @@ public class Animal {
 	}
 	
 	public String descricao() {
-		return "O animal" + this.nome + " é um ";
+		return "O animal " + this.nome + " é um ";
 	}
 
 
@@ -21,6 +21,11 @@ public class Animal {
 		this.nome = nome;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+	
+	
 	
 	
 }

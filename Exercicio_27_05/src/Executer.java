@@ -9,7 +9,7 @@ public class Executer {
 		
 		
 		Estacionamento.abrirCatraca(gerente);
-	s	Estacionamento.abrirCatraca(porteiro);
+	//	Estacionamento.abrirCatraca(porteiro);
 		
 	}
 

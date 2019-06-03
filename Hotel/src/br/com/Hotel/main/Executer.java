@@ -1,3 +1,5 @@
+package br.com.Hotel.main;
+import br.com.Hotel.utils.Menu;
 
 /*
  * LUCAS HENRIQUE - UC17201125

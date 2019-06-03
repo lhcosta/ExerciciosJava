@@ -1,5 +1,6 @@
-package pessoas;
-import interfaces.Limpeza;
+package br.com.Hotel.main.pessoas;
+
+import br.com.Hotel.main.interfaces.Limpeza;
 
 public class Servicais extends Funcionario implements Limpeza {
 	

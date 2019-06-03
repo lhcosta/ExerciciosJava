@@ -1,4 +1,4 @@
-package pessoas;
+package br.com.Hotel.main.pessoas;
 
 public class Hospede extends Pessoa {
 

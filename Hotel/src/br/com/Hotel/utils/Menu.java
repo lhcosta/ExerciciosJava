@@ -1,6 +1,7 @@
+package br.com.Hotel.utils;
 
-import interfaces.*;
-import pessoas.*;
+import br.com.Hotel.main.interfaces.*;
+import br.com.Hotel.main.pessoas.*;
 
 public class Menu {
 	
@@ -42,14 +43,15 @@ public class Menu {
 	
 	//Menu de Funcionarios
 	private static void menuFuncionario() {
-	
-		int option = View.solicitarInteiros("1 - Apresentar Funcionarios\n"
-				+ "2 - Cadastrar Funcionario\n", nomeHotel, 1, 2);
 		
-		switch (option) {
-		case 1:
+		
+		try {
 			
-			try {
+			int option = View.solicitarInteiros("1 - Apresentar Funcionarios\n"
+					+ "2 - Cadastrar Funcionario\n", nomeHotel, 1, 2);
+			
+			switch (option) {
+			case 1:
 				
 				String infoFuncionarios = "";
 				int i = 1;
@@ -60,30 +62,35 @@ public class Menu {
 				
 				View.apresentarMsg(infoFuncionarios, "Funcionarios");
 				
-			} catch (IllegalArgumentException e) {
-				// TODO: handle exception
-				View.apresentarMsgErro(e.getMessage(), "Funcionarios");
+				break;
+			case 2:
+				Utils.criarFuncionario();
+				View.apresentarMsg("Funcionario criado com sucesso", nomeHotel);
+				break;
 			}
 			
-			break;
-		case 2:
-			Utils.criarFuncionario();
-			View.apresentarMsg("Funcionario criado com sucesso", nomeHotel);
-			break;
+		} catch (IllegalArgumentException e) {
+			View.apresentarMsgErro(e.getMessage(), "Error");
+		
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+			return;
 		}
+	
 	}
 	
 	//Menu de hospedes
 	private static void menuHospedes() {
 		
-		int option = View.solicitarInteiros("1 - Apresentar hospedes\n"
-				+ "2 - Cadastrar hospedes\n", nomeHotel, 1, 2);
 		
-		switch (option) {
-		case 1:
+		try {
 			
-			try {
-				
+			int option = View.solicitarInteiros("1 - Apresentar hospedes\n"
+					+ "2 - Cadastrar hospedes\n", nomeHotel, 1, 2);
+			
+			switch (option) {
+			case 1:
+					
 				String infoHospedes = "";
 				int i = 1;
 				
@@ -93,19 +100,24 @@ public class Menu {
 				
 				View.apresentarMsg(infoHospedes, nomeHotel);
 				
+				break;
+			case 2:
 				
-			} catch (IllegalArgumentException e) {
-				// TODO: handle exception
-				View.apresentarMsgErro(e.getMessage(), "Hospedes");
+				Utils.criarHospede();
+				View.apresentarMsg("Hospede criado com sucesso", nomeHotel);
+				break;
 			}
+		
+		} catch (IllegalArgumentException e) {
+			// TODO: handle exception
+			View.apresentarMsgErro(e.getMessage(), "Error");
 			
-			break;
-		case 2:
+		} catch (NullPointerException e) {
+			// TODO: handle exception
 			
-			Utils.criarHospede();
-			View.apresentarMsg("Hospede criado com sucesso", nomeHotel);
-			break;
+			return;
 		}
+	
 	}
 	
 	//Menu areas do hotel
@@ -178,6 +190,8 @@ public class Menu {
 		} catch (IllegalArgumentException e) {
 			// TODO: handle exception
 			View.apresentarMsgErro(e.getMessage(), nomeHotel);
+		} catch (NullPointerException e) {
+			return;
 		}
 			
 	}

@@ -1,7 +1,9 @@
+package br.com.Hotel.utils;
 
 public class Validation {
 	
 	public static void validarInteiros(int valor, int valorMin, int valorMax) throws IllegalArgumentException {
+		
 		if(valor < valorMin || valor > valorMax) {
 			throw new IllegalArgumentException("Valor invalido");
 		}	

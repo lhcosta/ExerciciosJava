@@ -1,3 +1,4 @@
+package br.com.Hotel.utils;
 import javax.swing.JOptionPane;
 
 public class View {
@@ -51,6 +52,7 @@ public class View {
 					throw new NullPointerException();
 				}
 				
+				Validation.validarTextos(result);
 				Validation.validarInteiros(Integer.parseInt(result), valorMin, valorMax);
 				flag = false;
 				

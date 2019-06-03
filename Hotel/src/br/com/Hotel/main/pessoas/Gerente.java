@@ -1,6 +1,6 @@
-package pessoas;
+package br.com.Hotel.main.pessoas;
 
-import interfaces.Recepcao;
+import br.com.Hotel.main.interfaces.Recepcao;
 
 public class Gerente extends Funcionario implements Recepcao {
 	

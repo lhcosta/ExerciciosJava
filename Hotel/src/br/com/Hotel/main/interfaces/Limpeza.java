@@ -1,4 +1,5 @@
-package interfaces;
+package br.com.Hotel.main.interfaces;
+
 
 public interface Limpeza {
 	

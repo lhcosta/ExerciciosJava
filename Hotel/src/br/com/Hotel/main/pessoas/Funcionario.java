@@ -1,4 +1,4 @@
-package pessoas;
+package br.com.Hotel.main.pessoas;
 
 public abstract class Funcionario extends Pessoa{
 	

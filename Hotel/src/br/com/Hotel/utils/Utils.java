@@ -1,6 +1,7 @@
+package br.com.Hotel.utils;
 import java.util.ArrayList;
 
-import pessoas.*;
+import br.com.Hotel.main.pessoas.*;
 
 public class Utils {
 	

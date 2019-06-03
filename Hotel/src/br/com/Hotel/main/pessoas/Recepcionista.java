@@ -1,8 +1,7 @@
-package pessoas;
-
+package br.com.Hotel.main.pessoas;
 import java.util.ArrayList;
 
-import interfaces.Recepcao;
+import br.com.Hotel.main.interfaces.Recepcao;
 
 public class Recepcionista extends Funcionario implements Recepcao {
 

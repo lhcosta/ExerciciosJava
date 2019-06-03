@@ -1,5 +1,6 @@
-package pessoas;
-import interfaces.Cozinha;
+package br.com.Hotel.main.pessoas;
+
+import br.com.Hotel.main.interfaces.Cozinha;
 
 public class Cozinheiro extends Funcionario implements Cozinha {
 	

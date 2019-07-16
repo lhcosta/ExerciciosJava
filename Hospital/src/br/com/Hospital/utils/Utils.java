@@ -1,77 +1,83 @@
-package br.com.Hotel.utils;
+package br.com.Hospital.utils;
 import java.util.ArrayList;
 
-import br.com.Hotel.main.pessoas.*;
+import br.com.Hospital.main.interfaces.SalaCirurgia;
+import br.com.Hospital.main.pessoas.*;
 
 public class Utils {
 	
-	private static ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
-	private static ArrayList<Hospede> hospedes = new ArrayList<Hospede>();
+	private static ArrayList<Medico> medicos = new ArrayList<Medico>();
+	private static ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
 	
-	//Criando algum funcionario
-	public static void criarFuncionario() {
+	public static void cadastrarMedico() {
 		
-		Funcionario funcionario = null;
+		String nome = View.solicitarMsg("Digite o nome: ", "Medico");
+		String crm = View.solicitarMsg("Digite o CRM: ", "Medico");
+		Medico medico = null;
 		
-		int index_funcionario =  View.solicitarInteiros("1 - Gerente\n"
-				+ "2 - Recepcionista\n"
-				+ "3 - Cozinheiro\n"
-				+ "4 - Servicais\n"
-				+ "5 - Porteiro\n", "Tipo funcionario",1, 5);
+		int especialidade = View.solicitarInteiros("1 - Cirurgiao\n2 - Pediatra\n", "Especialidade", 1, 2);
 		
-		
-		String nome = View.solicitarMsg("Digite seu nome: ", "Funcionario");
-		String titulo = "Funcionarios";
-		
-		switch (index_funcionario) {
+		switch (especialidade) {
 		case 1:
-			funcionario = new Gerente(nome, View.solicitarMsg("Crie sua senha: ", titulo));
+			medico = new Cirurgiao(nome, crm);
 			break;
 		case 2:
-			funcionario = new Recepcionista(nome);
-			break;
-		case 3:
-			funcionario = new Cozinheiro(nome);
-			break;
-		case 4:
-			funcionario = new Servicais(nome);
-			break;
-		case 5:
-			funcionario = new Porteiro(nome);
+			medico = new Pediatra(nome, crm);
 		default:
 			break;
 		}
 		
-		funcionarios.add(funcionario);
-		
+		medicos.add(medico);
 	}
 	
-	//Criando hospede
-	public static void criarHospede() {
+	
+	public static void cadastrarPaciente() {
 		
-		String nome = View.solicitarMsg("Digite o nome: ", "Hospedes");
-		String cpf = View.solicitarMsg("Digite o CPF: ", "Hospedes");
+		String nome = View.solicitarMsg("Digite o nome: ", "Paciente");
+		int idade = View.solicitarInteiros("Digite a idade: ", "Paciente", 1, 100);
 		
-		Hospede hospede = new Hospede(nome, cpf);
-		
-		hospedes.add(hospede);
+		Paciente paciente = new Paciente(nome, idade);
+		pacientes.add(paciente);
 	}
 
-	public static ArrayList<Funcionario> getFuncionarios() throws IllegalArgumentException {
+
+	public static ArrayList<Medico> getMedicos() {
 		
-		if(funcionarios.size() == 0) {
-			throw new IllegalArgumentException("Nenhum funcionario cadastrado");
+		if(medicos.size() == 0) {
+			throw new NullPointerException("Nenhum medico cadastrado");
 		}
 		
-		return funcionarios;
+		return medicos;
 	}
 
-	public static ArrayList<Hospede> getHospedes() throws IllegalArgumentException {
+	public static ArrayList<Paciente> getPacientes() {
 		
-		if(hospedes.size() == 0) {
-			throw new IllegalArgumentException("Nenhum hospede cadastrado");
+		if (pacientes.size() == 0) {
+			throw new NullPointerException("Nenhum paciente cadastrado");
 		}
 		
-		return hospedes;
+		return pacientes;
 	}
+	
+	public static ArrayList<SalaCirurgia> getSalaCirurgia(){
+		
+		ArrayList<SalaCirurgia> profissionais = new ArrayList<SalaCirurgia>();
+		
+		if (medicos.size() == 0) {
+			throw new NullPointerException("Nenhum medico cadastrado");
+		}
+		
+		for(Medico m : medicos) {
+			if(m instanceof SalaCirurgia) {
+				profissionais.add((SalaCirurgia)m);
+			}
+		}
+		
+		if(profissionais.size() == 0) {
+			throw new NullPointerException("Ninguem possui acesso a Sala de Cirurgia");
+		}
+		
+		return profissionais;
+	}
+	
 }

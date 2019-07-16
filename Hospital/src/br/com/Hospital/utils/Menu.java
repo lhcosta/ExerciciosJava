@@ -1,198 +1,144 @@
-package br.com.Hotel.utils;
+package br.com.Hospital.utils;
 
-import br.com.Hotel.main.interfaces.*;
-import br.com.Hotel.main.pessoas.*;
+import br.com.Hospital.main.interfaces.SalaCirurgia;
+import br.com.Hospital.main.pessoas.*;
 
 public class Menu {
 	
-	private static String nomeHotel = "Hotel San Remy";
+	private static String nomeHospital = "Hospital UCB";
 	
 	//Menu Principal
 	public static void principal() {
 		
-		boolean flag = true;
+		int option = View.solicitarInteiros("1 - Medicos\n"
+				+ "2 - Pacientes\n", nomeHospital, 1, 2);
 		
-		View.apresentarMsg(nomeHotel, "Bem-vindo");
+		switch (option) {
+		case 1:
+			menuMedico();
+			break;
+		case 2:
+			menuPaciente();
+			break;
+		default:
+			break;
+		}
+	}
+	
+	//Menu de medicos
+	private static void menuMedico() {
+		
+		boolean flag = false;
 		
 		do {
 			
 			try {
-							
-				int option = View.solicitarInteiros("1 - Funcionarios\n"
-						+ "2 - Hospedes\n"
-						+ "3 - Setores Hotel", nomeHotel, 1, 3);
+				
+				int option = View.solicitarInteiros("1 - Cadastrar\n"
+						+ "2 - Apresentar\n"
+						+ "3 - Realizar Cirurgia\n", "Medicos", 1, 3);
 				
 				switch (option) {
 				case 1:
-					menuFuncionario();
+					Utils.cadastrarMedico();
 					break;
 				case 2:
-					menuHospedes();
+					
+					try {
+						
+						String medicos = "";
+						int i = 1;
+						
+						for(Medico m : Utils.getMedicos()) {
+							medicos += i++ + " - " + m.toString() + "\n";
+						}
+						
+						View.apresentarMsg(medicos, "Medicos");
+						
+					} catch (NullPointerException e) {
+						// TODO: handle exception
+						View.apresentarMsgErro(e.getMessage(), "Erro");
+					}
+					
 					break;
 				case 3:
-					menuSetorHotel();
+					
+					try {
+						
+						String cirurgioes = "";
+						int i = 1;
+						
+						for(SalaCirurgia c : Utils.getSalaCirurgia()) {
+							cirurgioes += i++ + " - " + c.toString();
+						}
+						
+						int index = View.solicitarInteiros(cirurgioes, "Escolha o cirurgiao", 1, Utils.getSalaCirurgia().size());
+						View.apresentarMsg(Utils.getSalaCirurgia().get(index-1).realizarCirurgia(), "Cirurgia");
+						
+					} catch (NullPointerException e) {
+						// TODO: handle exception
+						View.apresentarMsgErro(e.getLocalizedMessage(), "Erro");
+					}
+										
+					break;
+				default:
 					break;
 				}
-						
+				
 			} catch (NullPointerException e) {
 				// TODO: handle exception
-				flag = false;
-			}
-		} while (flag);
-	}
-	
-	//Menu de Funcionarios
-	private static void menuFuncionario() {
-		
-		
-		try {
-			
-			int option = View.solicitarInteiros("1 - Apresentar Funcionarios\n"
-					+ "2 - Cadastrar Funcionario\n", nomeHotel, 1, 2);
-			
-			switch (option) {
-			case 1:
-				
-				String infoFuncionarios = "";
-				int i = 1;
-				
-				for(Funcionario f : Utils.getFuncionarios()) {
-					infoFuncionarios += i++ + " - "  + f.toString() + "\n";
-				}
-				
-				View.apresentarMsg(infoFuncionarios, "Funcionarios");
-				
-				break;
-			case 2:
-				Utils.criarFuncionario();
-				View.apresentarMsg("Funcionario criado com sucesso", nomeHotel);
-				break;
+				flag = true;
 			}
 			
-		} catch (IllegalArgumentException e) {
-			View.apresentarMsgErro(e.getMessage(), "Error");
-		
-		} catch (NullPointerException e) {
-			// TODO: handle exception
-			return;
-		}
-	
+		}while(!flag);
 	}
 	
-	//Menu de hospedes
-	private static void menuHospedes() {
+	//Menu de pacientes
+	private static void menuPaciente() {
 		
+		boolean flag = false;
 		
-		try {
-			
-			int option = View.solicitarInteiros("1 - Apresentar hospedes\n"
-					+ "2 - Cadastrar hospedes\n", nomeHotel, 1, 2);
-			
-			switch (option) {
-			case 1:
-					
-				String infoHospedes = "";
-				int i = 1;
+		do {
+
+			try {
 				
-				for(Hospede h : Utils.getHospedes()) {
-					infoHospedes += i++ + " - " + h.toString() + "\n";
+				int option = View.solicitarInteiros("1 - Cadastrar\n"
+						+ "2 - Apresentar\n","Pacientes", 1, 2);
+				
+				switch (option) {
+				case 1:
+					Utils.cadastrarPaciente();
+					break;
+					
+				case 2:
+					
+					try {
+						
+						String pacientes = "";
+						int i = 1;
+						
+						for(Paciente p : Utils.getPacientes()) {
+							pacientes += i++ + " - " + p.toString() + "\n";
+						}	
+						
+						View.apresentarMsg(pacientes, "Pacientes");
+						
+					} catch (NullPointerException e) {
+						// TODO: handle exception
+						View.apresentarMsgErro(e.getMessage(), "Erro");
+					}
+					
+				default:
+					break;
 				}
 				
-				View.apresentarMsg(infoHospedes, nomeHotel);
-				
-				break;
-			case 2:
-				
-				Utils.criarHospede();
-				View.apresentarMsg("Hospede criado com sucesso", nomeHotel);
-				break;
+			} catch (NullPointerException e) {
+				// TODO: handle exception
+				flag = true;
 			}
+			
+		} while (!flag);
 		
-		} catch (IllegalArgumentException e) {
-			// TODO: handle exception
-			View.apresentarMsgErro(e.getMessage(), "Error");
-			
-		} catch (NullPointerException e) {
-			// TODO: handle exception
-			
-			return;
-		}
-	
 	}
-	
-	//Menu areas do hotel
-	//Apresentando os funcionarios que possuem accesso em cada setor
-	
-	private static void menuSetorHotel() {
-		
-		
-		try {
-			
-			int option = View.solicitarInteiros("1 - Cozinha\n"
-					+ "2 - Limpeza\n"
-					+ "3 - Recepcao\n", nomeHotel, 1, 3);
-			
-			String info = "";
-			int i = 1;
-			boolean flag = true;
-			
-			switch (option) {
-			case 1:
-				
-				for(Funcionario f : Utils.getFuncionarios()) {
-					if (f instanceof Cozinha) {
-						info += i++ + " - " + ((Cozinha) f).acessarCozinha() +  "\n";
-						flag = false;
-					}
-					
-					if(flag) {
-						View.apresentarMsgErro("Nenhum funcionario com acesso a cozinha", nomeHotel);
-					}else {
-						View.apresentarMsg(info, nomeHotel);
-					}
-				}
-				
-				break;
-			case 2:
-				
-				for(Funcionario f : Utils.getFuncionarios()) {
-					if (f instanceof Limpeza) {
-						info += i++ + " - " + ((Limpeza) f).acessarLimpeza() +  "\n";
-						flag = false;
-					}
-					
-					if(flag) {
-						View.apresentarMsgErro("Nenhum funcionario com acesso a limpeza", nomeHotel);
-					}else {
-						View.apresentarMsg(info, nomeHotel);
-					}
-				}
-				
-				break;
-			case 3:
-				
-				for(Funcionario f : Utils.getFuncionarios()) {
-					if (f instanceof Recepcao) {
-						info += i++ + " - " + ((Recepcao) f).acessarRecepcao() +  "\n";
-						flag = false;
-					}
-					
-					if(flag) {
-						View.apresentarMsgErro("Nenhum funcionario com acesso a recepcao", nomeHotel);
-					}else {
-						View.apresentarMsg(info, nomeHotel);
-					}
-				}
-				
-				break;
-			}
-				
-		} catch (IllegalArgumentException e) {
-			// TODO: handle exception
-			View.apresentarMsgErro(e.getMessage(), nomeHotel);
-		} catch (NullPointerException e) {
-			return;
-		}
-			
-	}
+
 }

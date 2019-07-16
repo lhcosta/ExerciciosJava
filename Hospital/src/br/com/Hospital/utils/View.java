@@ -1,4 +1,4 @@
-package br.com.Hotel.utils;
+package br.com.Hospital.utils;
 import javax.swing.JOptionPane;
 
 public class View {
